@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    @apply bg-surface-900 text-slate-100 font-sans antialiased;
+    min-height: 100vh;
+  }
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-surface-800;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-brand-600 rounded-full;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-500 text-white font-semibold px-5 py-2.5 rounded-xl transition-all duration-200 shadow-lg shadow-brand-600/20 hover:shadow-brand-500/30 hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 bg-surface-800 hover:bg-surface-700 text-slate-200 font-semibold px-5 py-2.5 rounded-xl border border-surface-700 hover:border-slate-500 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 text-slate-400 hover:text-slate-100 hover:bg-surface-800 font-medium px-4 py-2 rounded-xl transition-all duration-200;
+  }
+  .btn-danger {
+    @apply inline-flex items-center gap-2 bg-red-600/20 hover:bg-red-600/30 text-red-400 hover:text-red-300 font-semibold px-4 py-2 rounded-xl border border-red-500/20 hover:border-red-500/40 transition-all duration-200;
+  }
+  .card {
+    @apply bg-surface-800 rounded-2xl border border-surface-700 shadow-xl;
+  }
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 shadow-xl;
+  }
+  .input-field {
+    @apply w-full bg-surface-900 border border-surface-700 focus:border-brand-500 text-slate-100 placeholder-slate-500 rounded-xl px-4 py-3 outline-none transition-all duration-200 focus:ring-2 focus:ring-brand-500/20;
+  }
+  .label {
+    @apply block text-sm font-medium text-slate-300 mb-1.5;
+  }
+  .badge-event {
+    @apply inline-flex items-center gap-1 bg-violet-500/20 text-violet-300 border border-violet-500/30 text-xs font-semibold px-2.5 py-1 rounded-full;
+  }
+  .badge-request {
+    @apply inline-flex items-center gap-1 bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-semibold px-2.5 py-1 rounded-full;
+  }
+  .badge-offer {
+    @apply inline-flex items-center gap-1 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-semibold px-2.5 py-1 rounded-full;
+  }
+  .badge-announcement {
+    @apply inline-flex items-center gap-1 bg-sky-500/20 text-sky-300 border border-sky-500/30 text-xs font-semibold px-2.5 py-1 rounded-full;
+  }
+  .section-heading {
+    @apply text-3xl md:text-4xl font-bold text-white leading-tight;
+  }
+  .page-container {
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8;
+  }
+}
