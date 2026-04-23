@@ -42,14 +42,15 @@ export function AuthProvider({ children }) {
   }, []);
 
   /** Sign in with Google — also creates/merges Firestore profile */
-  const loginWithGoogle = useCallback(async () => {
-    const { user } = await googleLogin();
-    await createUserProfile(user.uid, {
-      displayName: user.displayName || '',
-      email:       user.email || '',
-      photoURL:    user.photoURL || '',
+  const loginWithGoogle = useCallback(() => {
+    return googleLogin().then(async ({ user }) => {
+      await createUserProfile(user.uid, {
+        displayName: user.displayName || '',
+        email:       user.email || '',
+        photoURL:    user.photoURL || '',
+      });
+      return user;
     });
-    return user;
   }, []);
 
   /** Sign out */

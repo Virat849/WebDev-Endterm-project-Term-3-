@@ -64,17 +64,15 @@ export default function Signup() {
     }
   }
 
-  async function handleGoogle() {
+  function handleGoogle() {
+    const promise = loginWithGoogle();
     setGoogleL(true);
     setApiErr('');
-    try {
-      await loginWithGoogle();
-      navigate('/home', { replace: true });
-    } catch (err) {
-      setApiErr(friendlyError(err.code));
-    } finally {
-      setGoogleL(false);
-    }
+
+    promise
+      .then(() => navigate('/home', { replace: true }))
+      .catch((err) => setApiErr(friendlyError(err.code)))
+      .finally(() => setGoogleL(false));
   }
 
   return (

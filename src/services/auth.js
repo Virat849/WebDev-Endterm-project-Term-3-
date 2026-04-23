@@ -38,7 +38,7 @@ export async function loginWithEmail(email, password) {
  * Sign in / sign up with Google OAuth popup.
  * @returns {Promise<UserCredential>}
  */
-export async function loginWithGoogle() {
+export function loginWithGoogle() {
   return signInWithPopup(auth, googleProvider);
 }
 

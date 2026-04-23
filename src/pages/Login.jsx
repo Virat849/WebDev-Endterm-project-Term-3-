@@ -59,17 +59,15 @@ export default function Login() {
     }
   }
 
-  async function handleGoogle() {
+  function handleGoogle() {
+    const promise = loginWithGoogle();
     setGoogleL(true);
     setError('');
-    try {
-      await loginWithGoogle();
-      navigate(from, { replace: true });
-    } catch (err) {
-      setError(friendlyError(err.code));
-    } finally {
-      setGoogleL(false);
-    }
+    
+    promise
+      .then(() => navigate(from, { replace: true }))
+      .catch((err) => setError(friendlyError(err.code)))
+      .finally(() => setGoogleL(false));
   }
 
   return (

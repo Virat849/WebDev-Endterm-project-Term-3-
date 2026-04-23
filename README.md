@@ -148,70 +148,6 @@ Enable the following providers in Firebase Console → Authentication → Sign-i
 - ✅ Email/Password
 - ✅ Google
 
-### Firestore Rules
-```javascript
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /users/{userId} {
-      allow read: if request.auth != null;
-      allow create: if request.auth != null && request.auth.uid == userId;
-      allow update: if request.auth != null && request.auth.uid == userId;
-      allow delete: if false;
-    }
-    match /posts/{postId} {
-      allow read: if request.auth != null;
-      allow create: if request.auth != null
-        && (request.resource.data.authorId == request.auth.uid
-          || request.resource.data.userId == request.auth.uid)
-        && request.resource.data.title is string
-        && request.resource.data.category is string;
-      allow update, delete: if request.auth != null
-        && (resource.data.authorId == request.auth.uid
-          || resource.data.userId == request.auth.uid);
-      match /comments/{commentId} {
-        allow read: if request.auth != null;
-        allow create: if request.auth != null
-          && request.resource.data.authorId == request.auth.uid;
-        allow update, delete: if request.auth != null
-          && resource.data.authorId == request.auth.uid;
-      }
-    }
-    match /comments/{commentId} {
-      allow read: if request.auth != null;
-      allow create: if request.auth != null
-        && (request.resource.data.authorId == request.auth.uid
-          || request.resource.data.userId == request.auth.uid);
-      allow update, delete: if request.auth != null
-        && (resource.data.authorId == request.auth.uid
-          || resource.data.userId == request.auth.uid);
-    }
-    match /reports/{reportId} {
-      allow create: if request.auth != null
-        && request.resource.data.reportedBy == request.auth.uid;
-      allow read, update, delete: if false;
-    }
-  }
-}
-```
-
----
-
-## 📄 Pages Overview
-
-| Route | Page | Auth Required |
-|---|---|---|
-| `/` | Landing Page | ❌ |
-| `/login` | Login | ❌ |
-| `/signup` | Signup | ❌ |
-| `/home` | Community Feed | ✅ |
-| `/post/:id` | Post Detail | ✅ |
-| `/create` | Create Post | ✅ |
-| `/edit/:id` | Edit Post | ✅ |
-| `/dashboard` | Dashboard | ✅ |
-| `/profile/:uid` | User Profile | ✅ |
-| `*` | 404 Not Found | ❌ |
-
 ---
 
 ## 🌐 Deployment
@@ -228,14 +164,6 @@ Then drag the `dist/` folder into [Vercel](https://vercel.com) or connect your G
 
 ---
 
-## 👨‍💻 Author
-
-**Your Name**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Email: your@email.com
-
----
-
 ## 📜 License
 
 This project is licensed under the MIT License.
@@ -243,5 +171,3 @@ This project is licensed under the MIT License.
 ---
 
 > Built with ❤️ as an end-term project for *Building Web Applications with React* — Batch 2029
-#   W e b D e v - E n d t e r m - p r o j e c t - T e r m - 3 -  
- 
